@@ -1,0 +1,300 @@
+html, body {
+    margin: 0 !important; 
+    padding: 0 !important;
+    height: 100%; 
+    width: 100%;
+    overflow: hidden; 
+}
+
+
+#root {
+    height: 100%;
+}
+
+:root {
+  --color-primary-blue: #007bff; 
+  --color-secondary-grey: #f7f7f7; 
+  --color-text-dark: #333;
+  --color-text-light: #fff;
+  --color-background-white: #fff;
+  --color-accent-link: #007bff;
+  --sidebar-width-collapsed: 60px; 
+  --sidebar-width-expanded: 250px; 
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+html, body, #root {
+  background-color: var(--color-background-white); 
+}
+
+.app-layout {
+  display: grid;
+  grid-template-rows: 60px 1fr 40px; 
+  grid-template-columns: 1fr;
+  height: 100vh; 
+  overflow: hidden; 
+}
+
+
+/* --- 2. Header Styling --- */
+.app-header {
+  grid-row: 1;
+  background-color: var(--color-primary-blue);
+  color: var(--color-text-light);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-section {
+    display: flex;
+    align-items: baseline;
+}
+
+.logo-big {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.app-name-header {
+    font-size: 1.5em;
+    font-weight: 300;
+    margin-left: 10px;
+}
+
+/* --- 3. Main Content Area Layout (Sidebar + Chat) --- */
+.content-area {
+  grid-row: 2;
+  display: flex;
+  overflow: hidden; 
+}
+
+.sidebar-container {
+  background-color: var(--color-secondary-grey);
+  color: var(--color-text-dark);
+  padding: 20px 15px;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0; 
+  
+  width: var(--sidebar-width-collapsed); 
+  overflow: hidden; 
+  transition: width 0.3s ease-in-out; 
+}
+
+.sidebar-container.sidebar-open {
+  width: var(--sidebar-width-expanded); 
+}
+
+.sidebar-toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 0;
+    margin-bottom: 20px;
+    align-self: flex-start; 
+    color: var(--color-text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; 
+    height: 30px;
+    transition: transform 0.3s;
+}
+
+
+.text-hidden-on-collapse {
+    opacity: 0;
+    transition: opacity 0.1s;
+    white-space: nowrap; 
+}
+
+.sidebar-container.sidebar-open .text-hidden-on-collapse {
+    opacity: 1;
+    transition-delay: 0.2s; 
+}
+
+
+.new-chat-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color-primary-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    gap: 15px; 
+    padding-left: 10px;
+}
+
+.new-chat-button:hover {
+    background-color: #0056b3;
+}
+.history-title {
+    color: #666;
+    font-size: 0.7em;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* Chat List/Item Adjustments */
+.chat-list {
+    list-style: none;
+    padding: 0;
+    overflow-y: hidden;
+    flex-grow: 1; 
+}
+
+.sidebar-container.sidebar-open .chat-list {
+    overflow-y: auto;
+}
+
+.chat-item {
+    padding: 8px 10px;
+    margin-bottom: 4px;
+    font-size: 0.9em;
+    color: #555;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.1s;
+    display: block;
+}
+.chat-item:hover {
+    background-color: #e8e8e8;
+    color: var(--color-text-dark);
+}
+
+
+/* --- 5. Main Chat Section Styling --- */
+.main-chat-section {
+    flex-grow: 1; 
+    background-color: var(--color-background-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    
+    padding: 0 20px; 
+}
+
+.chat-container {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-width: 900px; 
+    width: 100%;
+    margin: 0; 
+    
+    padding: 20px 0; 
+}
+
+
+.welcome-screen {
+    text-align: center;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 100px; 
+}
+
+.welcome-screen h1 {
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    font-weight: 600;
+}
+.welcome-screen p {
+    color: #777;
+    font-size: 1.1em;
+}
+
+
+/* --- 6. Chat Window & Message Styling --- */
+.chat-window {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ... Message Row Styles ... */
+.message-row { display: flex; margin-bottom: 15px; max-width: 85%; }
+.user-row { justify-content: flex-end; margin-left: auto; }
+.assistant-row { justify-content: flex-start; margin-right: auto; }
+.message-bubble { padding: 12px 16px; border-radius: 18px; line-height: 1.5; font-size: 1em; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); position: relative; }
+.message-bubble-user { background-color: #d1e7ff; color: var(--color-text-dark); border-bottom-right-radius: 4px; }
+.message-bubble-assistant { background-color: #f0f0f0; color: var(--color-text-dark); border-bottom-left-radius: 4px; }
+
+/* ... Loading and Citation Styles ... */
+.loading-indicator { display: flex; align-items: center; margin-top: 5px; font-size: 0.75em; color: #777; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.spinner { border: 2px solid #f3f3f3; border-top: 2px solid var(--color-primary-blue); border-radius: 50%; width: 12px; height: 12px; animation: spin 1s linear infinite; margin-right: 5px; }
+.source-citations-container { margin-top: 10px; padding-top: 5px; border-top: 1px solid rgba(0, 0, 0, 0.1); }
+.source-toggle-button { background: none; border: none; color: var(--color-accent-link); cursor: pointer; padding: 5px 0; display: flex; align-items: center; font-size: 0.8em; font-weight: 500; }
+.toggle-icon { margin-left: 5px; font-size: 0.6em; }
+.source-list { list-style-type: none; padding-left: 0; margin-top: 5px; font-size: 0.75em; color: #555; }
+.source-item { margin-bottom: 3px; }
+
+/* --- 7. Input Box Styling --- */
+.input-box-form {
+    margin: 0 0 20px 0; 
+    
+    display: flex;
+    max-width: 700px; 
+    width: 100%;
+    
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    overflow: hidden;
+}
+.input-field { flex-grow: 1; padding: 15px 20px; border: none; font-size: 1em; outline: none; }
+.submit-button { background-color: var(--color-primary-blue); border: none; padding: 15px 20px; cursor: pointer; color: white; font-size: 1.2em; transition: background-color 0.2s; display: flex; align-items: center; justify-content: center; }
+.submit-button:hover:not(:disabled) { background-color: #0056b3; }
+.submit-button:disabled { background-color: #ccc; cursor: not-allowed; }
+
+/* --- 8. Footer Styling --- */
+.app-footer {
+  grid-row: 3;
+  background-color: #444; 
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85em;
+  grid-column: 1 / -1; 
+  width: 100%;
+}
+
+.medical-disclaimer-container {
+  max-width: 900px;
+  margin: 0 auto 20px auto; 
+  padding: 5px 15px; 
+  text-align: center;
+
+  background-color: transparent; 
+  
+  color: var(--color-text-dark); 
+  
+  font-size: 0.8em;
+  width: 100%;
+  box-sizing: border-box;
+}
