@@ -13,6 +13,10 @@ load_dotenv()
 
 class Query(BaseModel):
     question: str
+    use_memory: bool = True  # Enable memory by default
+
+class ClearMemoryRequest(BaseModel):
+    pass
 
 app = FastAPI(title="Health RAG Chatbot")
 
@@ -32,9 +36,23 @@ pipeline = RAGPipeline(
     retriever=retriever, 
     llm=llm, 
     embedder=embedder, 
-    top_k=int(os.getenv("TOP_K", "4"))
+    top_k=int(os.getenv("TOP_K", "4")),
+    confidence_threshold = float(os.getenv("CONFIDENCE_THRESHOLD", "0.35")),  # Lowered to 0.35
+    enable_paraphrasing = os.getenv("ENABLE_PARAPHRASING", "true").lower() == "true"
 )
 
 @app.post("/chat")
 def chat(req: Query):
-    return pipeline.answer(req.question)
+    """Answer user question with multi-turn memory support"""
+    return pipeline.answer(req.question, use_memory=req.use_memory)
+
+@app.get("/history")
+def get_history():
+    """Get conversation history"""
+    return {"history": pipeline.get_conversation_history()}
+
+@app.post("/clear")
+def clear_memory(req: ClearMemoryRequest):
+    """Clear conversation memory"""
+    pipeline.clear_memory()
+    return {"status": "memory cleared"}
