@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediAssist - Health Chatbot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+
+  <div class="max-w-2xl mx-auto mt-8 mb-8">
+
+    <!-- Header -->
+    <div class="bg-white rounded-t-lg shadow-lg p-6">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold text-blue-700">MediAssist</h1>
+          <p class="text-gray-600 text-sm">Health Information Assistant</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="memoryIndicator" class="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full">
+            Memory: 0 messages
+          </span>
+          <button
+            id="clearBtn"
+            class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition"
+            title="Clear conversation history">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chatbox -->
+    <div id="chatbox"
+         class="bg-white h-[550px] p-6 overflow-y-auto border-x-2 border-gray-200 flex flex-col gap-3">
+      <div class="text-center text-gray-500 text-sm py-4">
+        👋 Welcome to MediAssist. Ask any health-related questions.
+      </div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="bg-white rounded-b-lg shadow-lg p-4">
+      <div class="flex gap-3">
+        <input
+          id="userInput"
+          type="text"
+          placeholder="Ask about symptoms, treatments, preventions..."
+          class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+          autocomplete="off"
+        />
+        <button
+          id="sendBtn"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed">
+          Send
+        </button>
+      </div>
+      <div class="flex items-center gap-2 mt-2">
+        <input
+          id="memoryToggle"
+          type="checkbox"
+          checked
+          class="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+        />
+        <label for="memoryToggle" class="text-xs text-gray-600 cursor-pointer">
+          Use conversation context
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
