@@ -12,44 +12,48 @@ html, body {
 }
 
 :root {
-  --color-primary-blue: #007bff; 
-  --color-secondary-grey: #f7f7f7; 
-  --color-text-dark: #333;
-  --color-text-light: #fff;
-  --color-background-white: #fff;
-  --color-accent-link: #007bff;
-  --sidebar-width-collapsed: 60px; 
-  --sidebar-width-expanded: 250px; 
+    /* Define color variables */
+    --color-primary-blue: #007bff; 
+    --color-secondary-grey: #f0f4f9; /* Lighter grey for sidebar background */
+    --color-text-dark: #333;
+    --color-text-light: #fff;
+    --color-background-white: #fff;
+    --color-accent-link: #007bff;
+    
+    /* Define sidebar widths */
+    --sidebar-width-collapsed: 60px; 
+    --sidebar-width-expanded: 280px; 
 }
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', Arial, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 html, body, #root {
-  background-color: var(--color-background-white); 
+    background-color: var(--color-background-white); 
 }
 
+/* --- 1. Main Layout --- */
 .app-layout {
-  display: grid;
-  grid-template-rows: 60px 1fr 40px; 
-  grid-template-columns: 1fr;
-  height: 100vh; 
-  overflow: hidden; 
+    display: grid;
+    grid-template-rows: 60px 1fr 40px; 
+    grid-template-columns: 1fr;
+    height: 100vh; 
+    overflow: hidden; 
 }
 
 
 /* --- 2. Header Styling --- */
 .app-header {
-  grid-row: 1;
-  background-color: var(--color-primary-blue);
-  color: var(--color-text-light);
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    grid-row: 1;
+    background-color: var(--color-primary-blue);
+    color: var(--color-text-light);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo-section {
@@ -70,99 +74,171 @@ html, body, #root {
 
 /* --- 3. Main Content Area Layout (Sidebar + Chat) --- */
 .content-area {
-  grid-row: 2;
-  display: flex;
-  overflow: hidden; 
+    grid-row: 2;
+    display: flex;
+    overflow: hidden; 
 }
 
+/* --- 4. Sidebar Container Styling --- */
 .sidebar-container {
-  background-color: var(--color-secondary-grey);
-  color: var(--color-text-dark);
-  padding: 20px 15px;
-  border-right: 1px solid #ddd;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0; 
-  
-  width: var(--sidebar-width-collapsed); 
-  overflow: hidden; 
-  transition: width 0.3s ease-in-out; 
+    background-color: var(--color-secondary-grey);
+    color: var(--color-text-dark);
+    
+    padding: 10px; /* Base padding for collapsed state */
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; 
+    
+    width: var(--sidebar-width-collapsed); 
+    overflow-x: hidden; 
+    transition: width 0.3s ease-in-out; 
+    height: 100%;
 }
 
 .sidebar-container.sidebar-open {
-  width: var(--sidebar-width-expanded); 
+    width: var(--sidebar-width-expanded); 
+    padding: 10px; /* Consistent padding when open */
 }
+
+/* Sections for flex alignment */
+.sidebar-top-section {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0 5px 20px 5px; 
+}
+.history-section {
+    flex-grow: 1; /* Pushes the footer to the bottom */
+    min-height: 0; 
+    overflow-y: hidden;
+    padding-top: 10px;
+}
+
+.sidebar-footer {
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+
+/* --- 5. Navigation Items Base Styles (Links and Buttons) --- */
+.sidebar-nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px; 
+    margin: 4px 0;
+    text-decoration: none;
+    color: var(--color-text-dark);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+    transition: background-color 0.2s, padding 0.3s;
+    border-radius: 8px; 
+    font-weight: 500;
+}
+
+.sidebar-nav-item:hover {
+    background-color: #e8e8e8; 
+}
+
+.nav-icon {
+    width: 25px; 
+    text-align: center;
+    font-size: 1.1em;
+    flex-shrink: 0;
+}
+
+/* Text visibility control */
+.sidebar-nav-text {
+    margin-left: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.1s, visibility 0.1s;
+}
+
+.sidebar-container.sidebar-open .sidebar-nav-text {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.1s; 
+}
+
 
 .sidebar-toggle-button {
-    background: none;
+    margin: 0;
+    padding: 5px;
     border: none;
-    cursor: pointer;
+}
+.sidebar-toggle-button .nav-icon {
+    width: auto;
+}
+.maximize-button {
     font-size: 1.2em;
-    padding: 0;
-    margin-bottom: 20px;
-    align-self: flex-start; 
-    color: var(--color-text-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px; 
-    height: 30px;
-    transition: transform 0.3s;
+    color: #555;
+    padding: 5px;
+    border: none;
+    
+    cursor: pointer;
 }
-
-
-.text-hidden-on-collapse {
-    opacity: 0;
-    transition: opacity 0.1s;
-    white-space: nowrap; 
+.maximize-button:hover {
+    background-color: #e8e8e8;
 }
-
-.sidebar-container.sidebar-open .text-hidden-on-collapse {
-    opacity: 1;
-    transition-delay: 0.2s; 
-}
-
 
 .new-chat-button {
-    width: 100%;
-    padding: 10px;
     background-color: var(--color-primary-blue);
     color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s;
-    display: flex;
-    align-items: center;
+    margin-bottom: 20px; 
     justify-content: flex-start; 
     gap: 15px; 
-    padding-left: 10px;
 }
 
 .new-chat-button:hover {
     background-color: #0056b3;
 }
+
+/* New Chat: Collapsed State (Circular Icon) */
+.sidebar-container:not(.sidebar-open) .new-chat-button {
+    padding: 10px; 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.sidebar-container:not(.sidebar-open) .new-chat-button .nav-icon {
+    width: auto;
+}
+
+
+/* --- 7. History Section & Scrollbar --- */
 .history-title {
     color: #666;
-    font-size: 0.7em;
-    margin-top: 25px;
-    margin-bottom: 10px;
+    font-size: 0.75em;
+    padding: 5px 15px; 
+    margin: 0 0 10px 0;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 0.5px;
 }
 
-/* Chat List/Item Adjustments */
 .chat-list {
     list-style: none;
-    padding: 0;
+    padding: 0 15px; 
+    margin: 0;
     overflow-y: hidden;
-    flex-grow: 1; 
+    height: 100%;
 }
 
 .sidebar-container.sidebar-open .chat-list {
     overflow-y: auto;
+    /* Custom scrollbar styling */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
 .chat-item {
@@ -174,21 +250,22 @@ html, body, #root {
     border-radius: 4px;
     transition: background-color 0.1s;
     display: block;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap; 
 }
 .chat-item:hover {
     background-color: #e8e8e8;
     color: var(--color-text-dark);
 }
 
-
-/* --- 5. Main Chat Section Styling --- */
+/* --- 8. Main Chat Section Styling --- */
 .main-chat-section {
     flex-grow: 1; 
     background-color: var(--color-background-white);
     display: flex;
     flex-direction: column;
     align-items: center; 
-    
     padding: 0 20px; 
 }
 
@@ -200,7 +277,6 @@ html, body, #root {
     max-width: 900px; 
     width: 100%;
     margin: 0; 
-    
     padding: 20px 0; 
 }
 
@@ -225,17 +301,7 @@ html, body, #root {
     font-size: 1.1em;
 }
 
-
-/* --- 6. Chat Window & Message Styling --- */
-.chat-window {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 10px 0;
-    display: flex;
-    flex-direction: column;
-}
-
-/* ... Message Row Styles ... */
+/* --- 9. Chat Window & Message Styling --- */
 .message-row { display: flex; margin-bottom: 15px; max-width: 85%; }
 .user-row { justify-content: flex-end; margin-left: auto; }
 .assistant-row { justify-content: flex-start; margin-right: auto; }
@@ -243,20 +309,9 @@ html, body, #root {
 .message-bubble-user { background-color: #d1e7ff; color: var(--color-text-dark); border-bottom-right-radius: 4px; }
 .message-bubble-assistant { background-color: #f0f0f0; color: var(--color-text-dark); border-bottom-left-radius: 4px; }
 
-/* ... Loading and Citation Styles ... */
-.loading-indicator { display: flex; align-items: center; margin-top: 5px; font-size: 0.75em; color: #777; }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-.spinner { border: 2px solid #f3f3f3; border-top: 2px solid var(--color-primary-blue); border-radius: 50%; width: 12px; height: 12px; animation: spin 1s linear infinite; margin-right: 5px; }
-.source-citations-container { margin-top: 10px; padding-top: 5px; border-top: 1px solid rgba(0, 0, 0, 0.1); }
-.source-toggle-button { background: none; border: none; color: var(--color-accent-link); cursor: pointer; padding: 5px 0; display: flex; align-items: center; font-size: 0.8em; font-weight: 500; }
-.toggle-icon { margin-left: 5px; font-size: 0.6em; }
-.source-list { list-style-type: none; padding-left: 0; margin-top: 5px; font-size: 0.75em; color: #555; }
-.source-item { margin-bottom: 3px; }
-
-/* --- 7. Input Box Styling --- */
+/* --- 10. Input Box Styling --- */
 .input-box-form {
     margin: 0 0 20px 0; 
-    
     display: flex;
     max-width: 700px; 
     width: 100%;
@@ -271,30 +326,26 @@ html, body, #root {
 .submit-button:hover:not(:disabled) { background-color: #0056b3; }
 .submit-button:disabled { background-color: #ccc; cursor: not-allowed; }
 
-/* --- 8. Footer Styling --- */
+/* --- 11. Footer Styling --- */
 .app-footer {
-  grid-row: 3;
-  background-color: #444; 
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85em;
-  grid-column: 1 / -1; 
-  width: 100%;
+    grid-row: 3;
+    background-color: #444; 
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85em;
+    grid-column: 1 / -1; 
+    width: 100%;
 }
 
 .medical-disclaimer-container {
-  max-width: 900px;
-  margin: 0 auto 20px auto; 
-  padding: 5px 15px; 
-  text-align: center;
-
-  background-color: transparent; 
-  
-  color: var(--color-text-dark); 
-  
-  font-size: 0.8em;
-  width: 100%;
-  box-sizing: border-box;
+    max-width: 900px;
+    margin: 0 auto 20px auto; 
+    padding: 5px 15px; 
+    text-align: center;
+    color: var(--color-text-dark); 
+    font-size: 0.8em;
+    width: 100%;
+    box-sizing: border-box;
 }
