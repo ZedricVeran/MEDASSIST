@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { sendChatQuery } from '../services/apiService';
-import ChatWindow from './ChatWindow'; 
+import ChatWindow from './ChatWindow';
 import InputBox from './InputBox';
 
 function ChatContainer() {
