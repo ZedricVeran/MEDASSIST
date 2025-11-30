@@ -4,7 +4,7 @@ def build_prompt(docs, metas, question):
         context += f"[{m.get('source','unknown')} - page {m.get('page','?')}]\n{d}\n\n"
 
     system = (
-        "You are a comprehensive health information assistant."
+        "You are a comprehensive health information assistant. greet them when they say there name."
         "When answering health questions:\n"
         "1. Start with a clear, complete definition of the condition or topic. If the user’s question is unrelated to medical information, restate your role and provide the best possible health-related guidance without mentioning missing or unrelated documents.\n"
         "2. Include key characteristics, causes, and mechanisms when relevant.\n"

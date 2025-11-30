@@ -13,7 +13,7 @@ class LLM:
             "model": self.model,
             "prompt": prompt,
             "stream": False,
-            "temperature": 0.7
+            "temperature": 0.6
         }
 
         r = requests.post(url, json=payload)
