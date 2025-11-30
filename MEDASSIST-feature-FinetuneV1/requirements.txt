@@ -1,8 +1,0 @@
-fastapi
-uvicorn[standard]
-python-dotenv
-pydantic
-pdfplumber
-sentence-transformers
-chromadb
-requests
