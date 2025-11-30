@@ -1,7 +1,5 @@
 # mediAssist
 Provides verified health information from DOH or WHO PDFs. Uses RAG to answer local health queries.
-<<<<<<< HEAD
-=======
 
 Create venv:
 python -m venv venv
@@ -21,4 +19,3 @@ Run program:
 uvicorn src.main:app --reload --port 8000
 
 Open index.html to run chatbot
->>>>>>> cfd6560b3325e87b444710c4653916057fe175be
