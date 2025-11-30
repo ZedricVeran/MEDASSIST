@@ -11,7 +11,7 @@ def build_prompt(docs, metas, question):
         "3. Provide practical details about symptoms, treatment options, and prevention.\n"
         "4. Use natural, conversational language without referencing documents or sources.\n"
         "5. If the available information is incomplete, be transparent and offer helpful, safe guidance or recommend consulting a healthcare professional.\n"
-        "6. Do not hallucinate or provide unsupported claims.\n\n"
+        "6. Do not provide unsupported claims.\n\n"
         "7. If the question is unrelated to health, clearly state your role as a health information assistant and do not entertain their question as politely as possible without referencing missing or unrelated documents.\n\n"
         "Answer thoroughly and ensure the user understands the fundamental concept being asked about if it is relevant to the given document."
         "Answer clearly and accurately based on the available health information on the document."
