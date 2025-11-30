@@ -1,0 +1,38 @@
+2025-11-27 00:04:01 | INFO | controller | args: Namespace(host='localhost', port=21001, dispatch_method='shortest_queue', ssl=False)
+2025-11-27 00:04:02 | ERROR | stderr | [32mINFO[0m:     Started server process [[36m1036[0m]
+2025-11-27 00:04:02 | ERROR | stderr | [32mINFO[0m:     Waiting for application startup.
+2025-11-27 00:04:02 | ERROR | stderr | [32mINFO[0m:     Application startup complete.
+2025-11-27 00:04:02 | ERROR | stderr | [32mINFO[0m:     Uvicorn running on [1mhttp://localhost:21001[0m (Press CTRL+C to quit)
+2025-11-27 00:05:21 | ERROR | stderr | [32mINFO[0m:     Shutting down
+2025-11-27 00:05:21 | ERROR | stderr | [32mINFO[0m:     Waiting for application shutdown.
+2025-11-27 00:05:21 | ERROR | stderr | [32mINFO[0m:     Application shutdown complete.
+2025-11-27 00:05:21 | ERROR | stderr | [32mINFO[0m:     Finished server process [[36m1036[0m]
+2025-11-27 00:05:29 | INFO | controller | args: Namespace(host='localhost', port=21001, dispatch_method='shortest_queue', ssl=False)
+2025-11-27 00:05:29 | ERROR | stderr | [32mINFO[0m:     Started server process [[36m20512[0m]
+2025-11-27 00:05:29 | ERROR | stderr | [32mINFO[0m:     Waiting for application startup.
+2025-11-27 00:05:29 | ERROR | stderr | [32mINFO[0m:     Application startup complete.
+2025-11-27 00:05:29 | ERROR | stderr | [32mINFO[0m:     Uvicorn running on [1mhttp://localhost:21001[0m (Press CTRL+C to quit)
+2025-11-27 01:15:05 | INFO | controller | args: Namespace(host='localhost', port=21001, dispatch_method='shortest_queue', ssl=False)
+2025-11-27 01:15:05 | ERROR | stderr | [32mINFO[0m:     Started server process [[36m11696[0m]
+2025-11-27 01:15:05 | ERROR | stderr | [32mINFO[0m:     Waiting for application startup.
+2025-11-27 01:15:05 | ERROR | stderr | [32mINFO[0m:     Application startup complete.
+2025-11-27 01:15:05 | ERROR | stderr | [32mINFO[0m:     Uvicorn running on [1mhttp://localhost:21001[0m (Press CTRL+C to quit)
+2025-11-27 01:35:31 | INFO | controller | args: Namespace(host='localhost', port=21001, dispatch_method='shortest_queue', ssl=False)
+2025-11-27 01:35:31 | ERROR | stderr | [32mINFO[0m:     Started server process [[36m25244[0m]
+2025-11-27 01:35:31 | ERROR | stderr | [32mINFO[0m:     Waiting for application startup.
+2025-11-27 01:35:31 | ERROR | stderr | [32mINFO[0m:     Application startup complete.
+2025-11-27 01:35:31 | ERROR | stderr | [32mINFO[0m:     Uvicorn running on [1mhttp://localhost:21001[0m (Press CTRL+C to quit)
+2025-11-27 01:40:35 | INFO | controller | args: Namespace(host='localhost', port=21001, dispatch_method='shortest_queue', ssl=False)
+2025-11-27 01:40:35 | ERROR | stderr | [32mINFO[0m:     Started server process [[36m13924[0m]
+2025-11-27 01:40:35 | ERROR | stderr | [32mINFO[0m:     Waiting for application startup.
+2025-11-27 01:40:35 | ERROR | stderr | [32mINFO[0m:     Application startup complete.
+2025-11-27 01:40:35 | ERROR | stderr | [31mERROR[0m:    [Errno 10048] error while attempting to bind on address ('::1', 21001, 0, 0): [winerror 10048] only one usage of each socket address (protocol/network address/port) is normally permitted
+2025-11-27 01:40:35 | ERROR | stderr | [32mINFO[0m:     Waiting for application shutdown.
+2025-11-27 01:40:35 | ERROR | stderr | [32mINFO[0m:     Application shutdown complete.
+2025-11-27 02:19:23 | INFO | controller | args: Namespace(host='localhost', port=21001, dispatch_method='shortest_queue', ssl=False)
+2025-11-27 02:19:23 | ERROR | stderr | [32mINFO[0m:     Started server process [[36m19856[0m]
+2025-11-27 02:19:23 | ERROR | stderr | [32mINFO[0m:     Waiting for application startup.
+2025-11-27 02:19:23 | ERROR | stderr | [32mINFO[0m:     Application startup complete.
+2025-11-27 02:19:23 | ERROR | stderr | [31mERROR[0m:    [Errno 10048] error while attempting to bind on address ('127.0.0.1', 21001): [winerror 10048] only one usage of each socket address (protocol/network address/port) is normally permitted
+2025-11-27 02:19:23 | ERROR | stderr | [32mINFO[0m:     Waiting for application shutdown.
+2025-11-27 02:19:23 | ERROR | stderr | [32mINFO[0m:     Application shutdown complete.

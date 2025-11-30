@@ -1,0 +1,351 @@
+html, body {
+    margin: 0 !important; 
+    padding: 0 !important;
+    height: 100%; 
+    width: 100%;
+    overflow: hidden; 
+}
+
+
+#root {
+    height: 100%;
+}
+
+:root {
+    /* Define color variables */
+    --color-primary-blue: #007bff; 
+    --color-secondary-grey: #f0f4f9; /* Lighter grey for sidebar background */
+    --color-text-dark: #333;
+    --color-text-light: #fff;
+    --color-background-white: #fff;
+    --color-accent-link: #007bff;
+    
+    /* Define sidebar widths */
+    --sidebar-width-collapsed: 60px; 
+    --sidebar-width-expanded: 280px; 
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+html, body, #root {
+    background-color: var(--color-background-white); 
+}
+
+/* --- 1. Main Layout --- */
+.app-layout {
+    display: grid;
+    grid-template-rows: 60px 1fr 40px; 
+    grid-template-columns: 1fr;
+    height: 100vh; 
+    overflow: hidden; 
+}
+
+
+/* --- 2. Header Styling --- */
+.app-header {
+    grid-row: 1;
+    background-color: var(--color-primary-blue);
+    color: var(--color-text-light);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-section {
+    display: flex;
+    align-items: baseline;
+}
+
+.logo-big {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.app-name-header {
+    font-size: 1.5em;
+    font-weight: 300;
+    margin-left: 10px;
+}
+
+/* --- 3. Main Content Area Layout (Sidebar + Chat) --- */
+.content-area {
+    grid-row: 2;
+    display: flex;
+    overflow: hidden; 
+}
+
+/* --- 4. Sidebar Container Styling --- */
+.sidebar-container {
+    background-color: var(--color-secondary-grey);
+    color: var(--color-text-dark);
+    
+    padding: 10px; /* Base padding for collapsed state */
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; 
+    
+    width: var(--sidebar-width-collapsed); 
+    overflow-x: hidden; 
+    transition: width 0.3s ease-in-out; 
+    height: 100%;
+}
+
+.sidebar-container.sidebar-open {
+    width: var(--sidebar-width-expanded); 
+    padding: 10px; /* Consistent padding when open */
+}
+
+/* Sections for flex alignment */
+.sidebar-top-section {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0 5px 20px 5px; 
+}
+.history-section {
+    flex-grow: 1; /* Pushes the footer to the bottom */
+    min-height: 0; 
+    overflow-y: hidden;
+    padding-top: 10px;
+}
+
+.sidebar-footer {
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+
+/* --- 5. Navigation Items Base Styles (Links and Buttons) --- */
+.sidebar-nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px; 
+    margin: 4px 0;
+    text-decoration: none;
+    color: var(--color-text-dark);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+    transition: background-color 0.2s, padding 0.3s;
+    border-radius: 8px; 
+    font-weight: 500;
+}
+
+.sidebar-nav-item:hover {
+    background-color: #e8e8e8; 
+}
+
+.nav-icon {
+    width: 25px; 
+    text-align: center;
+    font-size: 1.1em;
+    flex-shrink: 0;
+}
+
+/* Text visibility control */
+.sidebar-nav-text {
+    margin-left: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.1s, visibility 0.1s;
+}
+
+.sidebar-container.sidebar-open .sidebar-nav-text {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.1s; 
+}
+
+
+.sidebar-toggle-button {
+    margin: 0;
+    padding: 5px;
+    border: none;
+}
+.sidebar-toggle-button .nav-icon {
+    width: auto;
+}
+.maximize-button {
+    font-size: 1.2em;
+    color: #555;
+    padding: 5px;
+    border: none;
+    
+    cursor: pointer;
+}
+.maximize-button:hover {
+    background-color: #e8e8e8;
+}
+
+.new-chat-button {
+    background-color: var(--color-primary-blue);
+    color: white;
+    margin-bottom: 20px; 
+    justify-content: flex-start; 
+    gap: 15px; 
+}
+
+.new-chat-button:hover {
+    background-color: #0056b3;
+}
+
+/* New Chat: Collapsed State (Circular Icon) */
+.sidebar-container:not(.sidebar-open) .new-chat-button {
+    padding: 10px; 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.sidebar-container:not(.sidebar-open) .new-chat-button .nav-icon {
+    width: auto;
+}
+
+
+/* --- 7. History Section & Scrollbar --- */
+.history-title {
+    color: #666;
+    font-size: 0.75em;
+    padding: 5px 15px; 
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.chat-list {
+    list-style: none;
+    padding: 0 15px; 
+    margin: 0;
+    overflow-y: hidden;
+    height: 100%;
+}
+
+.sidebar-container.sidebar-open .chat-list {
+    overflow-y: auto;
+    /* Custom scrollbar styling */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.chat-item {
+    padding: 8px 10px;
+    margin-bottom: 4px;
+    font-size: 0.9em;
+    color: #555;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.1s;
+    display: block;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}
+.chat-item:hover {
+    background-color: #e8e8e8;
+    color: var(--color-text-dark);
+}
+
+/* --- 8. Main Chat Section Styling --- */
+.main-chat-section {
+    flex-grow: 1; 
+    background-color: var(--color-background-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 0 20px; 
+}
+
+.chat-container {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-width: 900px; 
+    width: 100%;
+    margin: 0; 
+    padding: 20px 0; 
+}
+
+
+.welcome-screen {
+    text-align: center;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 100px; 
+}
+
+.welcome-screen h1 {
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    font-weight: 600;
+}
+.welcome-screen p {
+    color: #777;
+    font-size: 1.1em;
+}
+
+/* --- 9. Chat Window & Message Styling --- */
+.message-row { display: flex; margin-bottom: 15px; max-width: 85%; }
+.user-row { justify-content: flex-end; margin-left: auto; }
+.assistant-row { justify-content: flex-start; margin-right: auto; }
+.message-bubble { padding: 12px 16px; border-radius: 18px; line-height: 1.5; font-size: 1em; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); position: relative; }
+.message-bubble-user { background-color: #d1e7ff; color: var(--color-text-dark); border-bottom-right-radius: 4px; }
+.message-bubble-assistant { background-color: #f0f0f0; color: var(--color-text-dark); border-bottom-left-radius: 4px; }
+
+/* --- 10. Input Box Styling --- */
+.input-box-form {
+    margin: 0 0 20px 0; 
+    display: flex;
+    max-width: 700px; 
+    width: 100%;
+    
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    overflow: hidden;
+}
+.input-field { flex-grow: 1; padding: 15px 20px; border: none; font-size: 1em; outline: none; }
+.submit-button { background-color: var(--color-primary-blue); border: none; padding: 15px 20px; cursor: pointer; color: white; font-size: 1.2em; transition: background-color 0.2s; display: flex; align-items: center; justify-content: center; }
+.submit-button:hover:not(:disabled) { background-color: #0056b3; }
+.submit-button:disabled { background-color: #ccc; cursor: not-allowed; }
+
+/* --- 11. Footer Styling --- */
+.app-footer {
+    grid-row: 3;
+    background-color: #444; 
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85em;
+    grid-column: 1 / -1; 
+    width: 100%;
+}
+
+.medical-disclaimer-container {
+    max-width: 900px;
+    margin: 0 auto 20px auto; 
+    padding: 5px 15px; 
+    text-align: center;
+    color: var(--color-text-dark); 
+    font-size: 0.8em;
+    width: 100%;
+    box-sizing: border-box;
+}
