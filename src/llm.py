@@ -4,7 +4,7 @@ import requests
 class LLM:
     def __init__(self):
         self.host = os.getenv("OLLAMA_HOST", "http://localhost:11434")
-        self.model = os.getenv("OLLAMA_MODEL", "gemma3")
+        self.model = os.getenv("OLLAMA_MODEL", "llama3")
 
     def generate(self, prompt):
         url = f"{self.host}/api/generate"
@@ -13,7 +13,7 @@ class LLM:
             "model": self.model,
             "prompt": prompt,
             "stream": False,
-            "temperature": 0.0
+            "temperature": 0.6
         }
 
         r = requests.post(url, json=payload)
